@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Extensions Detector",
+  "version": "1.0",
+  "permissions": ["management", "activeTab", "contextMenus", "storage"],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["options.html"],
+      "matches": ["https://*/*", "http://localhost:*/*"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

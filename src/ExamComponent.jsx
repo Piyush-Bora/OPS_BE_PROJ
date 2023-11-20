@@ -5,6 +5,27 @@ import screenfull from "screenfull";
 const ExamComponent = () => {
   const [warning, setWarning] = useState(!screenfull.isFullscreen);
 
+  // const [isTabFocused, setIsTabFocused] = useState(true);
+
+  // useEffect(() => {
+  //   const handleTabBlur = () => {
+  //     setIsTabFocused(false);
+  //     alert("Please focus on the exam tab.");
+  //   };
+
+  //   const handleTabFocus = () => {
+  //     setIsTabFocused(true);
+  //   };
+
+  //   window.addEventListener("blur", handleTabBlur);
+  //   window.addEventListener("focus", handleTabFocus);
+
+  //   return () => {
+  //     window.removeEventListener("blur", handleTabBlur);
+  //     window.removeEventListener("focus", handleTabFocus);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const els = document.querySelectorAll(".disable-text-selection");
     els.forEach((e) => {

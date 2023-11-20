@@ -1,5 +1,5 @@
 import { Button, Container, Stack } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import screenfull from "screenfull";
 
@@ -10,6 +10,19 @@ const StartTest = () => {
     screenfull.request();
     navigate("/test");
   };
+
+  useEffect(() => {
+    const extensionId = "mbdgaedkjlhmhbcaecmnahpoaagfbacj"; // Replace with the actual extension ID
+    const resourceUrl = `chrome-extension://${extensionId}/options.html`;
+
+    fetch(resourceUrl)
+      .then(() => {
+        console.log("Custom extension detected");
+      })
+      .catch(() => {
+        console.log("Custom extension not detected");
+      });
+  }, []);
 
   return (
     <Container
