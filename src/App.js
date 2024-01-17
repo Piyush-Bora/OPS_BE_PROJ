@@ -1,25 +1,24 @@
-import logo from "./logo.svg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StartTest from "./StartTest";
-import TestRoute from "./ExamComponent";
+import ExamComponent from "./ExamComponent";
 import "./App.css";
-import Test from "./ExamComponent";
-import { Container } from "@mui/material";
+import { AdminDashboard } from "./AdminDashboard";
+import { AddMCQSection } from "./AdminPages/AddMCQSection";
+import { AddSubjectiveSection } from "./AdminPages/AddSubjectiveSection";
 
 function App() {
   return (
-    <Container
-      style={{
-        minHeight: "100vh",
-      }}
-    >
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<StartTest />} />
-          <Route path="/test" element={<TestRoute />} />
-        </Routes>
-      </BrowserRouter>
-    </Container>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/start' element={<StartTest />} />
+        <Route path='/createTest' element={<StartTest />} />
+        <Route path='/test' element={<ExamComponent />} />
+        <Route path='/admin.dashboard/:testid' element={<AdminDashboard />}>
+          <Route index element={<AddMCQSection />} />
+          <Route path='subq' element={<AddSubjectiveSection />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

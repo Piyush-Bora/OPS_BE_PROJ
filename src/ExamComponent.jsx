@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+// import { Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import screenfull from "screenfull";
 
@@ -7,34 +7,32 @@ const ExamComponent = () => {
 
   const [isTabFocused, setIsTabFocused] = useState(true);
 
-  useEffect(() => {
-    const handleTabBlur = () => {
-      setIsTabFocused(false);
-      alert("Please focus on the exam tab.");
-    };
+  // useEffect(() => {
+  //   const handleTabBlur = () => {
+  //     setIsTabFocused(false);
+  //     alert("Please focus on the exam tab.");
+  //     screenfull.request();
+  //     setIsTabFocused(true);
+  //   };
 
-    const handleTabFocus = () => {
-      setIsTabFocused(true);
-    };
+  //   const handleTabFocus = () => {
+  //     setIsTabFocused(true);
+  //     screenfull.request();
+  //     setIsTabFocused(true);
+  //   };
 
-    window.addEventListener("blur", handleTabBlur);
-    window.addEventListener("focus", handleTabFocus);
+  //   window.addEventListener("blur", handleTabBlur);
+  //   window.addEventListener("focus", handleTabFocus);
 
-    return () => {
-      window.removeEventListener("blur", handleTabBlur);
-      window.removeEventListener("focus", handleTabFocus);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("blur", handleTabBlur);
+  //     window.removeEventListener("focus", handleTabFocus);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const els = document.querySelectorAll(".disable-text-selection");
     els.forEach((e) => {
-      //   .disable-text-selection{
-      //     -moz-user-select:none; /* firefox */
-      //     -webkit-user-select: none; /* Safari */
-      //     -ms-user-select: none; /* IE*/
-      //     user-select: none; /* Standard syntax */
-      //  }
       e.style.mozUserSelect = "none";
       e.style.webkitUserSelect = "none";
       e.style.msUserSelect = "none";
@@ -55,7 +53,7 @@ const ExamComponent = () => {
   }, []);
 
   return (
-    <Container
+    <div
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -63,8 +61,8 @@ const ExamComponent = () => {
         alignItems: "center",
       }}
     >
-      <Typography
-        className="disable-text-selection"
+      <p
+        className='disable-text-selection'
         paragraph={true}
         onCopy={(e) => e.preventDefault()}
         onCut={(e) => e.preventDefault()}
@@ -81,8 +79,8 @@ const ExamComponent = () => {
         tempora pariatur, id dolor possimus et quibusdam. Cupiditate natus
         officiis commodi animi? Possimus neque eum beatae vel quos quam
         reprehenderit, tenetur ipsum nihil necessitatibus!
-      </Typography>
-    </Container>
+      </p>
+    </div>
   );
 };
 

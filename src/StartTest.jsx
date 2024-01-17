@@ -1,4 +1,4 @@
-import { Button, Container, Stack } from "@mui/material";
+// import { Button, Container, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import screenfull from "screenfull";
@@ -25,7 +25,7 @@ const StartTest = () => {
   }, []);
 
   return (
-    <Container
+    <div
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -33,17 +33,17 @@ const StartTest = () => {
         alignItems: "center",
       }}
     >
-      <Stack
+      <div
         direction="row"
         justifyContent="center"
         alignItems="center"
         spacing={2}
       >
-        <Button size="large" variant="contained" onClick={handleStartTestClick}>
+        <button size="large" variant="contained" onClick={handleStartTestClick}>
           Start Test
-        </Button>
-      </Stack>
-    </Container>
+        </button>
+      </div>
+    </div>
   );
 };
 
