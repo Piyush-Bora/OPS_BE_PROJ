@@ -13,7 +13,7 @@ export const AdminDashboard = () => {
           <h1 className='mt-10 mx-10 text-3xl font-bold'>Hola Admin!</h1>
           <ul className='mt-20 space-y-3'>
             <NavLink
-              to='/admin.dashboard'
+              to={`/admin.dashboard/${testid}`}
               className={({ isActive }) =>
                 isActive && "font-bold text-white italic"
               }
@@ -40,7 +40,7 @@ export const AdminDashboard = () => {
             </NavLink>
 
             <NavLink
-              to='/admin.dashboard/subq/'
+              to={`/admin.dashboard/${testid}/subq`}
               className={({ isActive }) =>
                 isActive && "font-bold text-white italic"
               }
