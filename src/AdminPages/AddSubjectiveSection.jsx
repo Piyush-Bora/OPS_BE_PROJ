@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { MCQForm } from "../MCQForm";
 import { CgAdd } from "react-icons/cg";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
-import { SubjectiveForm } from "../SubjectiveForm";
+import { SubjectiveForm } from "./SubjectiveForm";
+import { useParams } from "react-router-dom";
 
 export const AddSubjectiveSection = () => {
+  const { testid } = useParams();
+  console.log({ testid });
   const [subq, setSubq] = useState([]);
 
   const handleAddMCQ = () => {

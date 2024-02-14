@@ -7,7 +7,7 @@ const initialState = {
   userSubmission: null,
 };
 
-export default function auth(state = initialState, acti on) {
+export default function auth(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
