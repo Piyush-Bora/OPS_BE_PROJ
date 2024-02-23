@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 function UpdateMcq() {
@@ -20,7 +19,7 @@ function UpdateMcq() {
 
 	const handleFieldChange = (index, field, value) => {
 		const updatedMcqs = [...mcqs];
-		updatedMcqs[index][field] = value;
+		updatedMcqs[index].field = value;
 		setMCQs(updatedMcqs);
 	};
 
@@ -54,7 +53,7 @@ function UpdateMcq() {
 					},
 				}
 			);
-			console.log(response.data.sort((a, b) => a.qno - b.qno));
+			console.log(response.data.sort((a, b) => a.qid - b.qid));
 			setMCQs(response.data);
 		} catch (error) {
 			console.error("Error fetching MCQs:", error);
@@ -81,20 +80,22 @@ function UpdateMcq() {
 
 	return (
 		<div className='mcq-list-container px-7 py-4 flex flex-wrap gap-4'>
-			{mcqs.map((mcq, index) => (
+			{mcqs.map((mcq) => (
 				<div
-					key={index}
+					key={mcq.qid}
 					className='flex flex-col gap-4 p-5 w-1/3 bg-slate-300 rounded-xl'
 				>
 					<div className='flex justify-between'>
-						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>Question Number</label>
-						{editMode[index] ? (
+						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
+							Question Number
+						</label>
+						{editMode[mcq.qid] ? (
 							<input
 								className='input-box'
 								type='number'
 								value={mcq.qno}
 								onChange={(e) =>
-									handleFieldChange(index, "qno", e.target.value)
+									handleFieldChange(mcq.qid, "qno", e.target.value)
 								}
 							></input>
 						) : (
@@ -102,13 +103,15 @@ function UpdateMcq() {
 						)}
 					</div>
 					<div className='flex justify-between'>
-						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>Question Text:</label>
-						{editMode[index] ? (
+						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
+							Question Text:
+						</label>
+						{editMode[mcq.qid] ? (
 							<textarea
 								className='input-box'
 								value={mcq.question_text}
 								onChange={(e) =>
-									handleFieldChange(index, "question_text", e.target.value)
+									handleFieldChange(mcq.qid, "question_text", e.target.value)
 								}
 							/>
 						) : (
@@ -116,13 +119,15 @@ function UpdateMcq() {
 						)}
 					</div>
 					<div className='flex justify-between'>
-						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>Option A:</label>
-						{editMode[index] ? (
+						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
+							Option A:
+						</label>
+						{editMode[mcq.qid] ? (
 							<textarea
 								className='input-box'
 								value={mcq.optionA}
 								onChange={(e) =>
-									handleFieldChange(index, "optionA", e.target.value)
+									handleFieldChange(mcq.qid, "optionA", e.target.value)
 								}
 							/>
 						) : (
@@ -130,13 +135,15 @@ function UpdateMcq() {
 						)}
 					</div>
 					<div className='flex justify-between'>
-						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>Option B:</label>
-						{editMode[index] ? (
+						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
+							Option B:
+						</label>
+						{editMode[mcq.qid] ? (
 							<textarea
 								className='input-box'
 								value={mcq.optionB}
 								onChange={(e) =>
-									handleFieldChange(index, "optionB", e.target.value)
+									handleFieldChange(mcq.qid, "optionB", e.target.value)
 								}
 							/>
 						) : (
@@ -145,13 +152,15 @@ function UpdateMcq() {
 					</div>
 
 					<div className='flex justify-between'>
-						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>Option C:</label>
-						{editMode[index] ? (
+						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
+							Option C:
+						</label>
+						{editMode[mcq.qid] ? (
 							<textarea
 								className='input-box'
 								value={mcq.optionC}
 								onChange={(e) =>
-									handleFieldChange(index, "optionC", e.target.value)
+									handleFieldChange(mcq.qid, "optionC", e.target.value)
 								}
 							/>
 						) : (
@@ -160,13 +169,15 @@ function UpdateMcq() {
 					</div>
 
 					<div className='flex justify-between'>
-						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>Option D:</label>
-						{editMode[index] ? (
+						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
+							Option D:
+						</label>
+						{editMode[mcq.qid] ? (
 							<textarea
 								className='input-box'
 								value={mcq.optionD}
 								onChange={(e) =>
-									handleFieldChange(index, "optionD", e.target.value)
+									handleFieldChange(mcq.qid, "optionD", e.target.value)
 								}
 							/>
 						) : (
@@ -174,13 +185,15 @@ function UpdateMcq() {
 						)}
 					</div>
 					<div className='flex justify-between'>
-						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>Correct Option:</label>
-						{editMode[index] ? (
+						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
+							Correct Option:
+						</label>
+						{editMode[mcq.qid] ? (
 							<textarea
 								className='input-box'
 								value={mcq.correct_option}
 								onChange={(e) =>
-									handleFieldChange(index, "correct_option", e.target.value)
+									handleFieldChange(mcq.qid, "correct_option", e.target.value)
 								}
 							/>
 						) : (
@@ -189,21 +202,24 @@ function UpdateMcq() {
 					</div>
 
 					<div className='actions flex gap-3'>
-						{editMode[index] ? (
-							<button className='btn-primary' onClick={() => handleSave(index)}>
+						{editMode[mcq.qid] ? (
+							<button
+								className='btn-primary'
+								onClick={() => handleSave(mcq.qid)}
+							>
 								Save
 							</button>
 						) : (
 							<button
 								className='btn-primary'
-								onClick={() => handleEditToggle(index)}
+								onClick={() => handleEditToggle(mcq.qid)}
 							>
 								Edit
 							</button>
 						)}
 						<button
 							className='btn-primary bg-red-600'
-							onClick={() => handleDelete(index)}
+							onClick={() => handleDelete(mcq.qid)}
 						>
 							Delete
 						</button>

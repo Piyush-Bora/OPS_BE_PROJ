@@ -19,7 +19,7 @@ const ShowCreatedTests = () => {
 
 	const fetchTests = async () => {
 		const token = localStorage.getItem("user_auth_token");
-		// console.log({ token });
+		console.log("token: ", token);
 
 		try {
 			// Make a POST request to your API endpoint
@@ -47,7 +47,7 @@ const ShowCreatedTests = () => {
 	};
 
 	const handleSave = async (index) => {
-		const token = localStorage.getItem("token");
+		const token = localStorage.getItem("user_auth_token");
 		try {
 			console.log(tests[index]);
 			const response = await axios.put(
@@ -67,7 +67,7 @@ const ShowCreatedTests = () => {
 	};
 
 	const handleDelete = async (index) => {
-		const token = localStorage.getItem("token");
+		const token = localStorage.getItem("user_auth_token");
 		try {
 			const response = await axios.delete(
 				`http://localhost:8000/api/test/${tests[index].testid}`,
