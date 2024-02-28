@@ -33,7 +33,7 @@ export const CreateTestForm = () => {
 			);
 
 			console.log("Test created successfully:", response.data);
-			navigate(`/admin.dashboard/${response.data.testid}`);
+			navigate(`/admin.dashboard/`);
 		} catch (error) {
 			console.error("Failed to create test:", error);
 			// Handle errors (e.g., display an error message to the user)

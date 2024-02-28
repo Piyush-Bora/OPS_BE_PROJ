@@ -85,10 +85,10 @@ const ShowCreatedTests = () => {
 	};
 
 	return (
-		<div className='test-list-container px-7 py-4 flex flex-wrap gap-4'>
+		<div className='test-list-container px-5 py-4 grid grid-cols-3 gap-4'>
 			{tests.map((test, index) => (
 				<div
-					className='flex flex-col gap-4 p-5 w-1/3 bg-slate-300 rounded-xl'
+					className='flex flex-col gap-4 p-5 w-1/3 bg-slate-300 rounded-xl w-full'
 					key={index}
 				>
 					<div className='flex justify-between'>
@@ -154,7 +154,7 @@ const ShowCreatedTests = () => {
 							<div>{test.end_date}</div>
 						)}
 					</div>
-					<div className='actions flex flex-wrap gap-3'>
+					<div className='actions grid grid-cols-2 gap-3'>
 						{editMode[index] ? (
 							<button className='btn-primary' onClick={() => handleSave(index)}>
 								Save
@@ -185,6 +185,18 @@ const ShowCreatedTests = () => {
 							to={`/admin.dashboard/updateMcq/${test.testid}`}
 						>
 							Show MCQ
+						</Link>
+						<Link
+							className='btn-primary'
+							to={`/admin.dashboard/addSub/${test.testid}`}
+						>
+							Add Subjective
+						</Link>
+						<Link
+							className='btn-primary'
+							to={`/admin.dashboard/updateSub/${test.testid}`}
+						>
+							Show Subjective
 						</Link>
 					</div>
 				</div>

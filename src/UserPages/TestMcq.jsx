@@ -8,7 +8,7 @@ export default function TestMcq() {
 			const token = localStorage.getItem("user_auth_token");
 			try {
 				const response = await axios.get(
-					`http://localhost:8000/api/mcq/?testid=5`,
+					`http://localhost:8000/api/getMcqQuestion/5/`,
 					{
 						headers: {
 							Authorization: `Token ${token}`,
@@ -62,7 +62,12 @@ export default function TestMcq() {
 	};
 
 	return (
-		<div className='w-full flex flex-col justify-center items-center gap-6 my-4'>
+		<div
+			contextMenuHidden={true}
+			onCopy={(e) => e.preventDefault()}
+			onPaste={(e) => e.preventDefault()}
+			className='w-full flex flex-col justify-center items-center gap-6 my-4'
+		>
 			{mcqData.map((question) => (
 				<div
 					key={question.qid}

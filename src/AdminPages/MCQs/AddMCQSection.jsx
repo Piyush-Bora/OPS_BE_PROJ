@@ -8,11 +8,11 @@ function AddMCQSection() {
 	console.log("printing testId", testid);
 	const [formData, setFormData] = useState({
 		qno: 0,
-		question_text: "",
+		qtionC: "",
+		optiouestion_text: "",
 		optionA: "",
 		optionB: "",
-		optionC: "",
-		optionD: "",
+		opnD: "",
 		correct_option: "A", // Default correct option
 	});
 
@@ -24,7 +24,6 @@ function AddMCQSection() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const token = localStorage.getItem("user_auth_token");
-		console.log(token);
 		try {
 			formData.test_id = testid;
 			console.log(formData);

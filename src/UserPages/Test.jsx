@@ -61,7 +61,13 @@ function Test() {
 		setView(e.target.innerHTML);
 	};
 	return (
-		<div id='testPage' className='flex flex-col w-full min-h-full'>
+		<div
+			contextMenuHidden={true}
+			onCopy={(e) => e.preventDefault()}
+			onPaste={(e) => e.preventDefault()}
+			id='testPage'
+			className='flex flex-col w-full min-h-full'
+		>
 			<ToastContainer />
 			{/* {!isActive && (
 				<WarningOverlay

@@ -3,14 +3,15 @@ import StartTest from "./StartTest";
 import ExamComponent from "./ExamComponent";
 import "./App.css";
 import { AdminDashboard } from "./AdminPages/AdminDashboard";
-import AddMCQSection from "./AdminPages/AddMCQSection";
-import { AddSubjectiveSection } from "./AdminPages/AddSubjectiveSection";
+import AddMCQSection from "./AdminPages/MCQs/AddMCQSection";
+import AddSubjectiveSection from "./AdminPages/Subjectives/AddSubjectiveSection";
 import { CreateTestForm } from "./AdminPages/CreateTestForm";
 import Login from "./features/auth/Login";
 import ShowCreatedTests from "./AdminPages/ShowCreatedTests";
 import RegistrationForm from "./features/auth/RegistrationForm";
-import UpdateMcq from "./AdminPages/UpdateMCQs";
+import UpdateMcq from "./AdminPages/MCQs/UpdateMCQs";
 import Test from "./UserPages/Test";
+import UpdateSub from "./AdminPages/Subjectives/UpdateSub";
 
 function App() {
 	return (
@@ -26,7 +27,8 @@ function App() {
 					<Route index element={<ShowCreatedTests />} />
 					<Route path='addMcq/:testid' element={<AddMCQSection />} />
 					<Route path='updateMcq/:testid' element={<UpdateMcq />} />
-					<Route path='subq' element={<AddSubjectiveSection />} />
+					<Route path='updateSub/:testid' element={<UpdateSub />} />
+					<Route path='addSub/:testid' element={<AddSubjectiveSection />} />
 					<Route path='createTest' element={<CreateTestForm />} />
 				</Route>
 			</Routes>
