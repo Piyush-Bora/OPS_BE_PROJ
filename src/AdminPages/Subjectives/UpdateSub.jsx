@@ -62,16 +62,19 @@ const UpdateSub = () => {
 		}
 	};
 
-	const handleDelete = async (mcqId) => {
+	const handleDelete = async (index) => {
 		const token = localStorage.getItem("user_auth_token");
+		const subId = mcqs[index].qid
 		try {
 			const response = await axios.delete(
-				`http://localhost:8000/api/subjective/${mcqId}`,
+				`http://localhost:8000/api/subjective/${subId}/`,
 				{
 					headers: {
-						Authorization: `Token ${token}`,
-					},
-				}
+						'Authorization': `Token ${token}`,
+						'Content-Type': 'application/x-www-form-urlencoded'
+					  },
+					data:{'test_id': testid}
+				},
 			);
 			console.log("MCQ deleted successfully:", response.data);
 			fetchMCQs(); // Refresh the MCQ list after deletion
@@ -82,21 +85,21 @@ const UpdateSub = () => {
 
 	return (
 		<div className='mcq-list-container px-7 py-4 flex flex-wrap gap-4'>
-			{mcqs.map((mcq) => (
+			{mcqs.map((mcq, index) => (
 				<div
-					key={mcq.qid}
+					key={index}
 					className='flex flex-col gap-4 p-5 w-1/3 bg-slate-300 rounded-xl'
 				>
 					<div className='flex justify-between'>
 						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
 							Question:
 						</label>
-						{editMode[mcq.qid] ? (
+						{editMode[index] ? (
 							<textarea
 								className='input-box'
 								value={mcq.statement}
 								onChange={(e) =>
-									handleFieldChange(mcq.qid, "statement", e.target.value)
+									handleFieldChange(index, "statement", e.target.value)
 								}
 							/>
 						) : (
@@ -105,24 +108,24 @@ const UpdateSub = () => {
 					</div>
 
 					<div className='actions flex gap-3'>
-						{editMode[mcq.qid] ? (
+						{editMode[index] ? (
 							<button
 								className='btn-primary'
-								onClick={() => handleSave(mcq.qid)}
+								onClick={() => handleSave(index)}
 							>
 								Save
 							</button>
 						) : (
 							<button
 								className='btn-primary'
-								onClick={() => handleEditToggle(mcq.qid)}
+								onClick={() => handleEditToggle(index)}
 							>
 								Edit
 							</button>
 						)}
 						<button
 							className='btn-primary bg-red-600'
-							onClick={() => handleDelete(mcq.qid)}
+							onClick={() => handleDelete(index)}
 						>
 							Delete
 						</button>
