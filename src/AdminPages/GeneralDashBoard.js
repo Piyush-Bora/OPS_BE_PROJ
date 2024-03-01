@@ -64,9 +64,9 @@ const ShowCreatedTests = () => {
                         </label>
                         <div>{test.end_date}</div>
                     </div>
-                    <button className='btn-primary' onClick={() => handleSave(index)}>
-								Register
-                    </button>
+                    <Link to={`/registerForTest/${test.testid}`} className="btn-primary">
+                        Register
+                    </Link>
                     <button className='btn-primary' onClick={() => handleSave(index)}>
 								Start Test
                     </button>

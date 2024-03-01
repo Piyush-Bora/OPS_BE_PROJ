@@ -13,6 +13,7 @@ import UpdateMcq from "./AdminPages/MCQs/UpdateMCQs";
 import Test from "./UserPages/Test";
 import UpdateSub from "./AdminPages/Subjectives/UpdateSub";
 import GeneralDashBoard from './AdminPages/GeneralDashBoard';
+import RegisterForTest from './UserPages/RegisterForTest';
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 				<Route path='/test' element={<Test />} />
 				<Route path='/createTest' element={<CreateTestForm />} />
 				<Route path='/test' element={<ExamComponent />} />
+				<Route path='/registerForTest/:testid' element={<RegisterForTest/>}/>
 				<Route path='/admin.dashboard/' element={<AdminDashboard />}>
 					<Route index element={<ShowCreatedTests />} />
 					<Route path='addMcq/:testid' element={<AddMCQSection />} />
