@@ -12,6 +12,7 @@ import RegistrationForm from "./features/auth/RegistrationForm";
 import UpdateMcq from "./AdminPages/MCQs/UpdateMCQs";
 import Test from "./UserPages/Test";
 import UpdateSub from "./AdminPages/Subjectives/UpdateSub";
+import GeneralDashBoard from './AdminPages/GeneralDashBoard';
 
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 					<Route path='updateSub/:testid' element={<UpdateSub />} />
 					<Route path='addSub/:testid' element={<AddSubjectiveSection />} />
 					<Route path='createTest' element={<CreateTestForm />} />
+					<Route path='generalDashboard' element={<GeneralDashBoard />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

@@ -3,7 +3,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export const AdminDashboard = () => {
-	const { testid } = useParams();
 
 	return (
 		<>
@@ -67,7 +66,7 @@ export const AdminDashboard = () => {
 						</NavLink>
 
 						<NavLink
-							to={`/admin.dashboard/${testid}/subq`}
+							to={`/admin.dashboard/generalDashboard`}
 							className={({ isActive }) =>
 								isActive && "font-bold text-white italic"
 							}
@@ -89,7 +88,7 @@ export const AdminDashboard = () => {
 										/>
 									</svg>
 								</span>
-								<span className=''>Subjective Section</span>
+								<span className=''>General Dashboard</span>
 							</li>
 						</NavLink>
 					</ul>
