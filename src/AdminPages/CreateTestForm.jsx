@@ -11,9 +11,7 @@ export const CreateTestForm = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log(testName, description, startDate, endDate);
 		const token = localStorage.getItem("user_auth_token");
-		console.log({ token });
 
 		try {
 			// Make a POST request to your API endpoint

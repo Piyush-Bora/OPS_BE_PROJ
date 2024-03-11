@@ -5,7 +5,6 @@ import { useParams, useNavigate } from "react-router-dom";
 function AddMCQSection() {
 	const { testid } = useParams();
 	const navigate = useNavigate();
-	console.log("printing testId", testid);
 	const [formData, setFormData] = useState({
 		qno: 0,
 		qtionC: "",
@@ -26,7 +25,6 @@ function AddMCQSection() {
 		const token = localStorage.getItem("user_auth_token");
 		try {
 			formData.test_id = testid;
-			console.log(formData);
 			const response = await axios.post(
 				"http://localhost:8000/api/mcq/",
 				formData,

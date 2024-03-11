@@ -9,7 +9,7 @@ const ShowCreatedTests = () => {
 
 	const formatDate = (date) => {
 		const dateObj = new Date(date);
-		const formattedDate = dayjs(dateObj).format("MMM DD, YY");
+		const formattedDate = dayjs(dateObj).format("MMM DD, YYYY");
 		return formattedDate;
 	};
 
@@ -19,7 +19,6 @@ const ShowCreatedTests = () => {
 
 	const fetchTests = async () => {
 		const token = localStorage.getItem("user_auth_token");
-		console.log("token: ", token);
 
 		try {
 			// Make a POST request to your API endpoint
@@ -49,7 +48,6 @@ const ShowCreatedTests = () => {
 	const handleSave = async (index) => {
 		const token = localStorage.getItem("user_auth_token");
 		try {
-			console.log(tests[index]);
 			const response = await axios.put(
 				`http://localhost:8000/api/test/${tests[index].testid}`,
 				tests[index],
@@ -88,7 +86,7 @@ const ShowCreatedTests = () => {
 		<div className='test-list-container px-5 py-4 grid grid-cols-3 gap-4'>
 			{tests.map((test, index) => (
 				<div
-					className='flex flex-col gap-4 p-5 w-1/3 bg-slate-300 rounded-xl w-full'
+					className='flex flex-col gap-4 p-5 bg-slate-300 rounded-xl w-full'
 					key={index}
 				>
 					<div className='flex justify-between'>
@@ -129,13 +127,13 @@ const ShowCreatedTests = () => {
 						{editMode[index] ? (
 							<input
 								type='datetime-local'
-								value={test.start_date}
+								value={formatDate(test.start_date)}
 								onChange={(e) =>
 									handleFieldChange(index, "start_date", e.target.value)
 								}
 							/>
 						) : (
-							<div>{test.start_date}</div>
+							<div>{formatDate(test.start_date)}</div>
 						)}
 					</div>
 					<div className='flex justify-between'>
@@ -145,13 +143,13 @@ const ShowCreatedTests = () => {
 						{editMode[index] ? (
 							<input
 								type='datetime-local'
-								value={test.end_date}
+								value={formatDate(test.end_date)}
 								onChange={(e) =>
 									handleFieldChange(index, "end_date", e.target.value)
 								}
 							/>
 						) : (
-							<div>{test.end_date}</div>
+							<div>{formatDate(test.end_date)}</div>
 						)}
 					</div>
 					<div className='actions grid grid-cols-2 gap-3'>

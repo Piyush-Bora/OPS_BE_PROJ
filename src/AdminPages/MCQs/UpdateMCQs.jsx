@@ -24,7 +24,6 @@ function UpdateMcq() {
 	};
 
 	const handleSave = async (index) => {
-		console.log(mcqs[index]);
 		const token = localStorage.getItem("user_auth_token");
 		try {
 			const response = await axios.put(

@@ -12,20 +12,22 @@ import RegistrationForm from "./features/auth/RegistrationForm";
 import UpdateMcq from "./AdminPages/MCQs/UpdateMCQs";
 import Test from "./UserPages/Test";
 import UpdateSub from "./AdminPages/Subjectives/UpdateSub";
-import GeneralDashBoard from './AdminPages/GeneralDashBoard';
-import RegisterForTest from './UserPages/RegisterForTest';
+import GeneralDashBoard from "./UserPages/GeneralDashBoard";
+import RegisterForTest from "./UserPages/RegisterForTest";
+import ExtDisable from "./UserPages/ExtDisable";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path='/' element={<ExtDisable />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<RegistrationForm />} />
 				<Route path='/startTest' element={<StartTest />} />
 				<Route path='/test' element={<Test />} />
 				<Route path='/createTest' element={<CreateTestForm />} />
 				<Route path='/test' element={<ExamComponent />} />
-				<Route path='/registerForTest/:testid' element={<RegisterForTest/>}/>
+				<Route path='/registerForTest/:testid' element={<RegisterForTest />} />
 				<Route path='/admin.dashboard/' element={<AdminDashboard />}>
 					<Route index element={<ShowCreatedTests />} />
 					<Route path='addMcq/:testid' element={<AddMCQSection />} />

@@ -12,26 +12,26 @@ const ShowCreatedTests = () => {
 
 	const fetchTests = async () => {
 		const token = localStorage.getItem("user_auth_token");
-		console.log("token: ", token);
 
 		try {
 			// Make a POST request to your API endpoint
-			const response = await axios.get("http://127.0.0.1:8000/api/generalDashboard", {
-				headers: {
-					Authorization: `Token ${token}`,
-				},
-			});
+			const response = await axios.get(
+				"http://127.0.0.1:8000/api/generalDashboard",
+				{
+					headers: {
+						Authorization: `Token ${token}`,
+					},
+				}
+			);
 
 			setTests(response.data);
 		} catch (error) {
 			console.error("Failed to create test:", error);
 			// Handle errors (e.g., display an error message to the user)
 		}
-    };
-    
-    const handleSave = async () => {
-        
-    }
+	};
+
+	const handleSave = async () => {};
 
 	return (
 		<div className='test-list-container px-5 py-4 grid grid-cols-3 gap-4'>
@@ -43,34 +43,41 @@ const ShowCreatedTests = () => {
 					<div className='flex justify-between'>
 						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
 							Title:
-                        </label>
-                        <div>{test.title}</div>
+						</label>
+						<div>{test.title}</div>
 					</div>
 					<div className='flex justify-between'>
 						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
 							Description:
-                        </label>
-                        <div>{test.description}</div>
+						</label>
+						<div>{test.description}</div>
 					</div>
 					<div className='flex justify-between'>
 						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
-							Start Date Tech:
-                        </label>
-                        <div>{test.start_date}</div>
+							Start Date:
+						</label>
+						<div>{test.start_date}</div>
 					</div>
 					<div className='flex justify-between'>
 						<label className='font-semibold bg-slate-500 text-white p-2 rounded-xl'>
 							End Date:
-                        </label>
-                        <div>{test.end_date}</div>
-                    </div>
-                    <Link to={`/registerForTest/${test.testid}`} className="btn-primary">
-                        Register
-                    </Link>
-                    <button className='btn-primary' onClick={() => handleSave(index)}>
-								Start Test
-                    </button>
-					
+						</label>
+						<div>{test.end_date}</div>
+					</div>
+					<div className='grid grid-cols-2 gap-3'>
+						<Link
+							to={`/registerForTest/${test.testid}`}
+							className='btn-primary'
+						>
+							Register
+						</Link>
+						<button
+							className='btn-primary bg-green-600'
+							onClick={() => handleSave(index)}
+						>
+							Start Test
+						</button>
+					</div>
 				</div>
 			))}
 		</div>

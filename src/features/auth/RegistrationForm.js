@@ -84,7 +84,9 @@ function RegistrationForm() {
 					<button className='btn-primary w-full'>
 						{loading ? "Loading..." : "Register"}
 					</button>
-					<Link to='/login'>Login here</Link>
+					<Link to='/login' className='btn-primary bg-blue-800'>
+						Login here
+					</Link>
 				</div>
 			</form>
 		</div>

@@ -2,10 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 // import "../styles/Subjective.css";
 export default function Subjective() {
+	const token = localStorage.getItem("user_auth_token");
 	const [subjective, setSubjective] = useState([]);
+
 	useEffect(() => {
 		const getSubjective = async () => {
-			const token = localStorage.getItem("user_auth_token");
 			try {
 				const response = await axios.get(
 					`http://localhost:8000/api/getSubjectiveQuestions/5/`,
@@ -18,7 +19,6 @@ export default function Subjective() {
 				setSubjective(response.data);
 			} catch (error) {
 				console.error("Error fetching sections:", error);
-				// alert(error.response.detail);
 			}
 		};
 
@@ -44,9 +44,8 @@ export default function Subjective() {
 				return;
 			}
 		});
-		console.log(updatedObj);
 
-		const token = localStorage.getItem("user_auth_token");
+		// const token = localStorage.getItem("user_auth_token");
 		try {
 			await axios.post(
 				`http://localhost:8000/api/submitSubjective/${updatedObj.test_id}/`,
