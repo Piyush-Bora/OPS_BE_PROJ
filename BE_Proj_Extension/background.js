@@ -1,16 +1,3 @@
-chrome.runtime.onInstalled.addListener(() => {
-	disableExtensions();
-});
-
-chrome.runtime.onMessageExternal.addListener(
-	(request, sender, sendResponse) => {
-		if (request.action === "disableExtensions") {
-			disableExtensions();
-			sendResponse(chrome.runtime.getManifest().name + " disabled extensions:");
-		}
-	}
-);
-
 function disableExtensions() {
 	chrome.management.getAll((extensions) => {
 		const list = extensions.filter(
@@ -24,3 +11,5 @@ function disableExtensions() {
 		});
 	});
 }
+
+disableExtensions();

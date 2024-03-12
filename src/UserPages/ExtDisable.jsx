@@ -5,21 +5,20 @@ function ExtDisable() {
 	const [disabledExtensions, setDisabledExtensions] = useState([]);
 
 	useEffect(() => {
-		const disableExtensions = async () => {
-			try {
-				const response = await chrome.runtime.sendMessage(
-					"nfakobhkkhjegcmldlgbdafgeebkdkbc",
-					{
-						action: "disableExtensions",
-					}
-				);
-				setDisabledExtensions(response);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
-		disableExtensions();
+		// 	const disableExtensions = async () => {
+		// 		try {
+		// 			const response = await chrome.runtime.sendMessage(
+		// 				"nfakobhkkhjegcmldlgbdafgeebkdkbc",
+		// 				{
+		// 					action: "disableExtensions",
+		// 				}
+		// 			);
+		// 			setDisabledExtensions(response);
+		// 		} catch (error) {
+		// 			console.error(error);
+		// 		}
+		// 	};
+		// 	disableExtensions();
 	}, []);
 
 	return (
