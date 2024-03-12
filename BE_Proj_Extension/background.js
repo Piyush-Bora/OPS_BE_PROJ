@@ -12,4 +12,8 @@ function disableExtensions() {
 	});
 }
 
-disableExtensions();
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.action === "disableExtensions") {
+		disableExtensions();
+	}
+});
