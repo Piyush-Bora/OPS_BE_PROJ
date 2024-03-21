@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StartTest from "./StartTest";
-import ExamComponent from "./ExamComponent";
 import "./App.css";
 import { AdminDashboard } from "./AdminPages/AdminDashboard";
 import AddMCQSection from "./AdminPages/MCQs/AddMCQSection";
@@ -12,21 +11,18 @@ import RegistrationForm from "./features/auth/RegistrationForm";
 import UpdateMcq from "./AdminPages/MCQs/UpdateMCQs";
 import Test from "./UserPages/Test";
 import UpdateSub from "./AdminPages/Subjectives/UpdateSub";
-import GeneralDashBoard from "./UserPages/GeneralDashBoard";
+import GeneralDashBoard from "./UserPages/AvailableTests";
 import RegisterForTest from "./UserPages/RegisterForTest";
-import ExtDisable from "./UserPages/ExtDisable";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<ExtDisable />} />
-				<Route path='/login' element={<Login />} />
+				<Route path='/' element={<Login />} />
 				<Route path='/register' element={<RegistrationForm />} />
-				<Route path='/startTest' element={<StartTest />} />
-				<Route path='/test' element={<Test />} />
+				<Route path='/startTest/:testid' element={<StartTest />} />
+				<Route path='/test/:testid' element={<Test />} />
 				<Route path='/createTest' element={<CreateTestForm />} />
-				<Route path='/test' element={<ExamComponent />} />
 				<Route path='/registerForTest/:testid' element={<RegisterForTest />} />
 				<Route path='/admin.dashboard/' element={<AdminDashboard />}>
 					<Route index element={<ShowCreatedTests />} />
@@ -35,7 +31,7 @@ function App() {
 					<Route path='updateSub/:testid' element={<UpdateSub />} />
 					<Route path='addSub/:testid' element={<AddSubjectiveSection />} />
 					<Route path='createTest' element={<CreateTestForm />} />
-					<Route path='generalDashboard' element={<GeneralDashBoard />} />
+					<Route path='availableTests' element={<GeneralDashBoard />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

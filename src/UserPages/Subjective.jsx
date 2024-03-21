@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import "../styles/Subjective.css";
-export default function Subjective() {
+
+export default function Subjective({ testid }) {
 	const token = localStorage.getItem("user_auth_token");
 	const [subjective, setSubjective] = useState([]);
 
@@ -9,7 +9,7 @@ export default function Subjective() {
 		const getSubjective = async () => {
 			try {
 				const response = await axios.get(
-					`http://localhost:8000/api/getSubjectiveQuestions/5/`,
+					`http://localhost:8000/api/getSubjectiveQuestions/${testid}/`,
 					{
 						headers: {
 							Authorization: `Token ${token}`,
@@ -45,10 +45,9 @@ export default function Subjective() {
 			}
 		});
 
-		// const token = localStorage.getItem("user_auth_token");
 		try {
 			await axios.post(
-				`http://localhost:8000/api/submitSubjective/${updatedObj.test_id}/`,
+				`http://localhost:8000/api/submitSubjective/${testid}/`,
 				updatedObj,
 				{
 					headers: {
@@ -62,24 +61,39 @@ export default function Subjective() {
 		}
 	};
 	return (
-		<>
+		<div
+			contextMenuHidden={true}
+			onCopy={(e) => e.preventDefault()}
+			onPaste={(e) => e.preventDefault()}
+			className='w-full flex flex-col justify-center items-center gap-6 my-4'
+		>
 			{subjective.map((ques, index) => (
-				<div key={ques.qid} className='card'>
-					<div className='subjective_question'>
-						<h3>{ques.statement}</h3>
+				<div
+					key={ques.qid}
+					className='bg-gray-300 p-4 text-lg flex flex-col gap-3 rounded-xl min-w-[50%]'
+				>
+					<div className='text-center flex gap-3 items-center'>
+						<span className='text-white font-semibold bg-slate-600 text-lg w-9 h-9 rounded-full flex justify-center items-center'>
+							{index + 1}
+						</span>
+						<span className='text-2xl'>{ques.statement}</span>
 					</div>
-					<div className='subjective_answer'>
+					<div className='w-full'>
 						<textarea
 							placeholder={ques.submitted_ans}
 							value={ques.submitted_answer}
 							onChange={(event) => handleInputChange(index, event)}
-						></textarea>
+							className='w-full rounded-lg p-3'
+						/>
 					</div>
-					<button onClick={() => saveAnswer(ques.qid, ques.submitted_answer)}>
+					<button
+						className='btn-primary'
+						onClick={() => saveAnswer(ques.qid, ques.submitted_answer)}
+					>
 						SAVE
 					</button>
 				</div>
 			))}
-		</>
+		</div>
 	);
 }

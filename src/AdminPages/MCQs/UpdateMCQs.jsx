@@ -63,15 +63,16 @@ function UpdateMcq() {
 		const token = localStorage.getItem("user_auth_token");
 		const mcqId = mcqs[index].qid;
 		try {
-			const response = await axios.delete(`http://localhost:8000/api/mcq/${mcqId}/`,
-			{
-			  headers: {
-				'Authorization': `Token ${token}`,
-				'Content-Type': 'application/x-www-form-urlencoded'
-			  },
-			  data: {'test_id': testid},
-  
-		  });
+			const response = await axios.delete(
+				`http://localhost:8000/api/mcq/${mcqId}/`,
+				{
+					headers: {
+						Authorization: `Token ${token}`,
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					data: { test_id: testid },
+				}
+			);
 			console.log("MCQ deleted successfully:", response.data);
 			fetchMCQs(); // Refresh the MCQ list after deletion
 		} catch (error) {
@@ -204,10 +205,7 @@ function UpdateMcq() {
 
 					<div className='actions flex gap-3'>
 						{editMode[index] ? (
-							<button
-								className='btn-primary'
-								onClick={() => handleSave(index)}
-							>
+							<button className='btn-primary' onClick={() => handleSave(index)}>
 								Save
 							</button>
 						) : (

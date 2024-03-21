@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
 import * as tf from "@tensorflow/tfjs";
+import { useParams } from "react-router-dom";
 
 export default function Rightsection() {
 	const webcamRef = useRef(null);
@@ -11,6 +12,7 @@ export default function Rightsection() {
 	const [encoder, setEncoder] = useState(null);
 	const [suspicion, setSuspicion] = useState(0);
 	const blazeface = require("@tensorflow-models/blazeface");
+	const { testid } = useParams();
 
 	const getEncodings = async (e1) => {
 		const imagePixels = tf.browser.fromPixels(e1);
@@ -144,7 +146,7 @@ export default function Rightsection() {
 			const token = localStorage.getItem("user_auth_token");
 			try {
 				const response = await axios.get(
-					`http://localhost:8000/api/testRegistration/5/`,
+					`http://localhost:8000/api/testRegistration/${testid}/`,
 					{
 						headers: {
 							Authorization: `Token ${token}`,

@@ -3,7 +3,7 @@ import Rightsection from "./RightSection";
 import Listsections from "./ListSections";
 import TestMcq from "./TestMcq";
 import Subjective from "./Subjective";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import screenfull from "screenfull";
 import WarningOverlay from "./WarningOverlay";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,6 +13,7 @@ function Test() {
 	const ele = document.getElementById("testPage");
 	const [fullscreenOverlay, setFullscreenOverlay] = useState(false);
 	const [isActive, setIsActive] = useState(true);
+	const { testid } = useParams();
 
 	const toggleFullScreen = () => {
 		if (screenfull.isEnabled) {
@@ -55,7 +56,7 @@ function Test() {
 		screenfull.on("change", changeHandler);
 	}, [fullscreenOverlay]);
 
-	const [view, setView] = useState(null);
+	const [view, setView] = useState("MCQ");
 	const changeView = (e) => {
 		console.log("change view");
 		setView(e.target.innerHTML);
@@ -69,12 +70,6 @@ function Test() {
 			className='flex flex-col w-full min-h-full'
 		>
 			<ToastContainer />
-			{/* {!isActive && (
-				<WarningOverlay
-					text='Tab Switch Warning'
-					cta='Understood'
-				/>
-			)} */}
 			{fullscreenOverlay && (
 				<WarningOverlay
 					text='Full screen Mode Exit Warning'
@@ -91,20 +86,20 @@ function Test() {
 						Submit Test
 					</Link>
 				</div>
-				{/* <Rightsection /> */}
+				{/* <Rightsection testid={testid} /> */}
 			</div>
 			<div className='flex flex-col p-5'>
 				<div className='flex justify-evenly'>
-					<Listsections sec={view} changeView={changeView} />
+					<Listsections sec={view} changeView={changeView} testid={testid} />
 				</div>
 				{view === "MCQ" ? (
-					<div className='h-full'>
-						<TestMcq />
+					<div className='mt-7'>
+						<TestMcq testid={testid} />
 					</div>
 				) : (
-					<div className='f-full'>
+					<div className='mt-7'>
 						{/* <h1>{ view}</h1> */}
-						<Subjective />
+						<Subjective testid={testid} />
 					</div>
 				)}
 			</div>

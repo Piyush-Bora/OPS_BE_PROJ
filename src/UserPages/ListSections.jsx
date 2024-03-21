@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-export default function Listsections({ sec, changeView }) {
+
+export default function Listsections({ sec, changeView, testid }) {
 	const [section, setSection] = useState([]);
 
 	useEffect(() => {
@@ -8,7 +9,7 @@ export default function Listsections({ sec, changeView }) {
 			const token = localStorage.getItem("user_auth_token");
 			try {
 				const response = await axios.get(
-					`http://localhost:8000/api/getSection/5`,
+					`http://localhost:8000/api/getSection/${testid}`,
 					{
 						headers: {
 							Authorization: `Token ${token}`,

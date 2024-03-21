@@ -2,9 +2,12 @@ import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const ShowCreatedTests = () => {
+const AvailableTests = () => {
 	const [tests, setTests] = useState([]);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetchTests();
@@ -31,7 +34,9 @@ const ShowCreatedTests = () => {
 		}
 	};
 
-	const handleSave = async () => {};
+	const handleSave = async () => {
+		navigate('/startTest/')
+	};
 
 	return (
 		<div className='test-list-container px-5 py-4 grid grid-cols-3 gap-4'>
@@ -71,12 +76,12 @@ const ShowCreatedTests = () => {
 						>
 							Register
 						</Link>
-						<button
+						<Link
+							to={`/startTest/${test.testid}`}
 							className='btn-primary bg-green-600'
-							onClick={() => handleSave(index)}
 						>
 							Start Test
-						</button>
+						</Link>
 					</div>
 				</div>
 			))}
@@ -84,4 +89,4 @@ const ShowCreatedTests = () => {
 	);
 };
 
-export default ShowCreatedTests;
+export default AvailableTests;

@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import "../styles/TestMcq.css";
-export default function TestMcq() {
+
+export default function TestMcq({ testid }) {
 	const [mcqData, setMCQData] = useState([]);
 	useEffect(() => {
 		const getSections = async () => {
 			const token = localStorage.getItem("user_auth_token");
 			try {
 				const response = await axios.get(
-					`http://localhost:8000/api/getMcqQuestion/5/`,
+					`http://127.0.0.1:8000/api/getMcqQuestion/${testid}/`,
 					{
 						headers: {
 							Authorization: `Token ${token}`,
@@ -44,7 +44,7 @@ export default function TestMcq() {
 
 			try {
 				const response = await axios.post(
-					`http://localhost:8000/api/submitMcq/5/`,
+					`http://localhost:8000/api/submitMcq/${testid}/`,
 					newans,
 					{
 						headers: {
@@ -68,13 +68,16 @@ export default function TestMcq() {
 			onPaste={(e) => e.preventDefault()}
 			className='w-full flex flex-col justify-center items-center gap-6 my-4'
 		>
-			{mcqData.map((question) => (
+			{mcqData.map((question, index) => (
 				<div
 					key={question.qid}
 					className='bg-gray-300 p-4 text-lg flex flex-col gap-3 rounded-xl min-w-[50%]'
 				>
-					<div className='text-2xl font-semibold text-center'>
-						{question.question_text}
+					<div className='text-center flex gap-3 items-center'>
+						<span className='text-white font-semibold bg-slate-600 text-lg w-9 h-9 rounded-full flex justify-center items-center'>
+							{index+1}
+						</span>
+						<span className='text-2xl'>{question.question_text}</span>
 					</div>
 					<div className='flex flex-col gap-2'>
 						<div className='p-3 bg-gray-100 flex gap-x-2 rounded-lg hover:bg-gray-500 hover:text-white'>

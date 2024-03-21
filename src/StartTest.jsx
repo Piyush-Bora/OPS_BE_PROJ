@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import screenfull from "screenfull";
 import DetectRTC from "detectrtc";
 import swal from "sweetalert";
+import { useParams } from "react-router-dom";
 // import NetworkSpeed from "network-speed"; // ES5
 import { ReactInternetSpeedMeter } from "react-internet-meter";
 // import DetectRTC from "detectrtc";
@@ -126,10 +127,8 @@ function ValidateCheck() {
 	}
 }
 
-const StartTest = () => {
-	// const setwifiSpeed = (speed) => {
-	// 	sessionStorage.setItem("netspeed", speed);
-	// };
+const StartTest = (props) => {
+	const { testid } = useParams();
 
 	useEffect(() => {
 		const handleEntry = (entry) => {
@@ -152,7 +151,7 @@ const StartTest = () => {
 	ValidateCheck();
 
 	function handleClick() {
-		navigate.push("/validate");
+		navigate("/validate");
 	}
 
 	const navigate = useNavigate();
@@ -161,7 +160,7 @@ const StartTest = () => {
 		if (screenfull.isEnabled) {
 			screenfull.request();
 		}
-		navigate("/test");
+		navigate(`/test/${testid}`);
 	};
 
 	useEffect(() => {

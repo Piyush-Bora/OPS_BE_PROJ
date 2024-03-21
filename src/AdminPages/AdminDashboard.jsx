@@ -3,7 +3,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export const AdminDashboard = () => {
-
 	return (
 		<>
 			<div className='min-h-full flex relative max-w-screen'>
@@ -66,7 +65,7 @@ export const AdminDashboard = () => {
 						</NavLink>
 
 						<NavLink
-							to={`/admin.dashboard/generalDashboard`}
+							to={`/admin.dashboard/availableTests`}
 							className={({ isActive }) =>
 								isActive && "font-bold text-white italic"
 							}
@@ -88,7 +87,7 @@ export const AdminDashboard = () => {
 										/>
 									</svg>
 								</span>
-								<span className=''>General Dashboard</span>
+								<span className=''>Available Tests</span>
 							</li>
 						</NavLink>
 					</ul>
